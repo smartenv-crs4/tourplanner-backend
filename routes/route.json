@@ -1,0 +1,19 @@
+{
+  "GLOBAL": {
+    "baseUrl": "/api/v1/route"
+  },
+
+  
+  "/nearestRoads": {
+    "GET": {
+      "route": "getRoad"
+        }
+    },
+    
+  "/directions": {
+    "GET": {
+      "route": "getDirection"
+        }
+    }
+    
+}

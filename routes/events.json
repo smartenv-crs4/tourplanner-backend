@@ -1,0 +1,49 @@
+{
+  "GLOBAL": {
+    "baseUrl": "/api/v1"
+  },
+
+  
+  "/all": {
+    "GET": {
+      "route": "get_all"
+        }
+    },
+
+  "/events": {
+    "GET": {
+      "route": "get_events"
+        }
+    },
+    
+    "/restaurants": {
+    "GET": {
+      "route": "get_restaurants"
+        }
+    },
+
+    "/monuments": {
+    "GET": {
+      "route": "get_monuments"
+        }
+    },
+    
+    "/museums": {
+    "GET": {
+      "route": "get_museums"
+        }
+    },
+    
+    "/gardens": {
+    "GET": {
+      "route": "get_gardens"
+        }
+    },
+    
+    "/archeoSites": {
+    "GET": {
+      "route": "get_archeo_sites"
+        }
+    }
+    
+}

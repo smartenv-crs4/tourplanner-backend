@@ -1,0 +1,14 @@
+{
+  "GLOBAL": {
+    "baseUrl": "/api/v1"
+  },
+
+  
+  "/ship": {
+    "GET": {
+      "route": "get"
+        }
+    }
+
+
+}

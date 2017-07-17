@@ -1,0 +1,17 @@
+{
+  "base": {
+  },
+  "db": {
+    "mysql": {
+      "username": "postgres",
+      "password": "postgres_62",
+      "database": "port_schedule",
+      "options": {
+        "host": "156.148.14.146",
+        "port": 3998,
+        "dialect": "postgres",
+        "logging": false
+      }
+    }
+  }
+ }

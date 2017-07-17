@@ -1,0 +1,29 @@
+{
+  "base": {
+    "port": 3000,
+    "dbSync": false,
+    "signup": true,
+    "pathModelsSQL": "./api/modelsSQL",
+    "pathModelsNOSQL": "./api/modelsNOSQL"
+  },
+  "routes": {
+    "routesPath": "./routes",
+    "controllersPath": "./api/controllers",
+    "policyPath": "./api/policy",
+    "modelsPath": "./api/models",
+    "cors": true
+  },
+   "db": {
+    "mysql": {
+      "username": "postgres",
+      "password": "postgres_62",
+      "database": "port_schedule",
+      "options": {
+        "host": "156.148.14.146",
+        "port": 3998,
+        "dialect": "postgres",
+        "logging": false
+      }
+    }
+  }
+}
