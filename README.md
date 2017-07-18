@@ -47,9 +47,6 @@ Nella directory `api/controller` sono presenti i controller dell'applicazione. N
 Nella directory `routes` sono presenti le rotte di tutte le API presenti
 
 
-
-
-
 *Struttura del progetto*
 
 ```
@@ -67,9 +64,24 @@ project root
 server.js
 package.js
 
-...
+```
 
 
 
 ### Installazione attuale ###
+
+Al momento esiste un'installazione sul server seitre 156.148.14.147, risponde alla porta 3009 ed è staticizzato con PM2.
+
+Il deploy è nella direcotry /repositories/seitre/tourplanner_backend
+
+* es: http://seitre.crs4.it:3009/api/v1/dictionary?name_table=category&lang=it
+
+database:
+
+* server -> 156.148.14.146 (seidue)
+* porta  -> 3998
+* nome   -> seitre_tour_planner
+
+
+
 
