@@ -18,11 +18,12 @@ Nella directory `script_Etl` sono presenti gli script che permettono il popolame
 
 
 
-#### avvio della app
-al primo avvio eseguire `npm install` per installare tutte le dipendenze.
+#### Avvio della app
+al primo avvio eseguire `npm install` per installare tutte le dipendenze
+
 `npm start`
 
-#### staticizzazione della app con PM2
+#### Staticizzazione della app con PM2
 installazione: npm install pm2 -g
 
 PM2 start server.js --name  [nomeApplicazione] -> avvio dell'applicazione 
@@ -31,46 +32,44 @@ PM2 list -> per vedere la lista delle app avviate
 
 PM2 stop [nomeApplicazione] -> interruzione dell'applicazione
 
-PM2 restart [nomeApplicazione] -> riavvio dell'applicazione.
+PM2 restart [nomeApplicazione] -> riavvio dell'applicazione
+
 PM2 logs [nomeApplicazione] -> log dell'applicazione
 
-### Installazione attuale ###
+
+### Config della app ###
+Nella directory `config` sono presenti i file Json dove configurare la applicazione (porta, database, ecc..)
+
+### Controller della app ###
+Nella directory `api/controller` sono presenti i controller dell'applicazione. Nella directory `api/modelSQL` viene gestito il driver per la connessione SQL
+
+### Routing della app ###
+Nella directory `routes` sono presenti le rotte di tutte le API presenti
 
 
-#TEST REST
 
-*project strucure*
+
+
+*Struttura del progetto*
 
 ```
 project root
 ├── api/
 │   ├── controllers
-│   ├── models
-│   ├── policy
-│   ├── services
-│   ├── views
+│   ├── modelsSQL
 ├── config/
 ├── docs/
 ├── public/
 ├── routes/
 ├── sslcert/
-├── test/
-```
+├── db_script/
+├── etl_script/
+server.js
+package.js
+
+...
 
 
-### Mange Routing
-Refere to [json-routing](https://www.npmjs.com/package/json-routing) docs.
 
-### Docs & create new Docs
-docs are available in `./docs` directory, to update it use:
-`npm run docs`
+### Installazione attuale ###
 
-#### Launch app
-
-PROD: `npm start`
-
-DEV: `npm run dev`
-
-DEBUX unix: `DEBUG=express:* node ./bin/www`
-
-DEBUG windows`set DEBUG=express:* & node ./bin/www`
