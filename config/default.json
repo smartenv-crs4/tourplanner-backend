@@ -4,7 +4,8 @@
     "dbSync": false,
     "signup": true,
     "pathModelsSQL": "./api/modelsSQL",
-    "pathModelsNOSQL": "./api/modelsNOSQL"
+    "pathModelsNOSQL": "./api/modelsNOSQL",
+    "pathFactory": "factory"
   },
   "routes": {
     "routesPath": "./routes",
@@ -17,7 +18,7 @@
     "mysql": {
       "username": "postgres",
       "password": "postgres_62",
-      "database": "port_schedule",
+      "database": "seitre_tour_planner",
       "options": {
         "host": "156.148.14.146",
         "port": 3998,

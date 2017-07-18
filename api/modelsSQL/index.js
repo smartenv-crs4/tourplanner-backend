@@ -19,6 +19,7 @@ var basename = path.basename(module.filename);
 var dbConfig = require("config");
 var config = dbConfig.get("db.mysql");
 var sequelize = new Sequelize(config.database, config.username, config.password, config.options);
+
 var db = {};
 
 fs

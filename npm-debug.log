@@ -18,8 +18,8 @@
 9 verbose stack     at maybeClose (internal/child_process.js:827:16)
 9 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:211:5)
 10 verbose pkgid templateSQL@0.0.1
-11 verbose cwd /home/linux/Progetti/tour_planner
-12 error Linux 3.19.0-77-generic
+11 verbose cwd /home/linux/Progetti/tourplanner_backend
+12 error Linux 3.19.0-84-generic
 13 error argv "/usr/bin/nodejs" "/usr/bin/npm" "start"
 14 error node v4.4.2
 15 error npm  v2.15.0

@@ -5,7 +5,7 @@
     "mysql": {
       "username": "postgres",
       "password": "postgres_62",
-      "database": "port_schedule",
+      "database": "seitre_tour_planner",
       "options": {
         "host": "156.148.14.146",
         "port": 3998,
