@@ -17,7 +17,6 @@ Nella directory `db_script` è presente lo script SQL per creare il database
 Nella directory `etl_script` sono presenti gli script che permettono il popolamento delle tabelle del db, questi sono wrapper dei dati messi a disposizione dai crawler
 
 
-
 #### Avvio della app
 al primo avvio eseguire `npm install` per installare tutte le dipendenze
 
@@ -43,7 +42,7 @@ Nella directory `config` sono presenti i file Json dove configurare la applicazi
 ### Controller della app ###
 Nella directory `api/controller` sono presenti i controller dell'applicazione. 
 
-### factory della app ###
+### Factory della app ###
 Nella directory `api/factory` sono presenti i proxy con le chiamate al db. Nella directory `api/modelSQL` viene gestito il driver per la connessione SQL.
 
 ### Routing della app ###
