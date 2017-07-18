@@ -1,3 +1,16 @@
+# Cagliari Port 2020 - Tour Planner backend #
+
+L'applicazione costituiesce il backend della app mobile "Tour Planner".
+Questo documento intende riportare i requisiti ed i passi necessari per l'installazione ed il suo setup. 
+
+### Requisiti ###
+* NodeJs >= v5.0.0
+* PM2 (Non obbligatorio)
+* Postgres >= 9.4
+
+
+#### avvio della app
+npm start
 
 #TEST REST
 
