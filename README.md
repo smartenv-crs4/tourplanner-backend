@@ -10,11 +10,11 @@ Questo documento intende riportare i requisiti ed i passi necessari per l'instal
 
 
 ### Database ###
-Nella directory `script_Db` è presente lo script SQL per creare il database
+Nella directory `db_script` è presente lo script SQL per creare il database
 
 
 ### Script popolamento tabelle ###
-Nella directory `script_Etl` sono presenti gli script che permettono il popolamento delle tabelle del db, questi sono wrapper dei dati messi a disposizione dai crawler
+Nella directory `etl_script` sono presenti gli script che permettono il popolamento delle tabelle del db, questi sono wrapper dei dati messi a disposizione dai crawler
 
 
 
@@ -70,7 +70,7 @@ package.js
 
 ### Installazione attuale ###
 
-Al momento esiste un'installazione sul server seitre 156.148.14.147, risponde alla porta 3009 ed è staticizzato con PM2.
+Al momento esiste un'installazione sul server seitre 156.148.14.147, risponde alla porta 3009 ed è staticizzata con PM2.
 
 Il deploy è nella direcotry /repositories/seitre/tourplanner_backend
 
