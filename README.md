@@ -10,17 +10,17 @@ Questo documento intende riportare i requisiti ed i passi necessari per l'instal
 
 
 ### Database ###
-Nella directory script_Db è presente lo script SQL per creare il database
+Nella directory `script_Db` è presente lo script SQL per creare il database
 
 
 ### Script popolamento tabelle ###
-Nella directory script_Etl sono presenti gli script che permettono il popolamento delle tabelle del db, questi sono wrapper dei dati messi a disposizione dai crawler
+Nella directory `script_Etl` sono presenti gli script che permettono il popolamento delle tabelle del db, questi sono wrapper dei dati messi a disposizione dai crawler
 
 
 
 #### avvio della app
-al primo avvio eseguire npm istall per installare tutte le dipendenze
-npm start
+al primo avvio eseguire `npm install` per installare tutte le dipendenze
+`npm start`
 
 #### staticizzazione della app con PM2
 installazione: npm install pm2 -g
