@@ -41,7 +41,10 @@ PM2 logs [nomeApplicazione] -> log dell'applicazione
 Nella directory `config` sono presenti i file Json dove configurare la applicazione (porta, database, ecc..)
 
 ### Controller della app ###
-Nella directory `api/controller` sono presenti i controller dell'applicazione. Nella directory `api/modelSQL` viene gestito il driver per la connessione SQL
+Nella directory `api/controller` sono presenti i controller dell'applicazione. 
+
+### factory della app ###
+Nella directory `api/factory` sono presenti i proxy con le chiamate al db. Nella directory `api/modelSQL` viene gestito il driver per la connessione SQL.
 
 ### Routing della app ###
 Nella directory `routes` sono presenti le rotte di tutte le API presenti
@@ -53,6 +56,7 @@ Nella directory `routes` sono presenti le rotte di tutte le API presenti
 project root
 ├── api/
 │   ├── controllers
+    ├── factory
 │   ├── modelsSQL
 ├── config/
 ├── docs/
