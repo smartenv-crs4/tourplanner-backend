@@ -110,11 +110,13 @@ function data_insert(docs)
      */
      
      
-     str_query = "insert into dat_event (fk_category, fk_city, _id, data) "
+     str_query = "insert into dat_event (fk_category, fk_city, _id, data, rating, time_to_visit) "
      + "values ($1, "
      + "$2, "
      + "$3, "
-     + "$4 "
+     + "$4, "
+     + "$5, "
+     + "$6 "
      + ")";
      
      data = {"category":        docs.category
@@ -127,7 +129,7 @@ function data_insert(docs)
              , "img":           docs.img
              , "address":       docs.address};
      
-     sql.query(str_query, {bind: [1,1, docs._id, data], type: sql.QueryTypes.INSERT})
+     sql.query(str_query, {bind: [1,1, docs._id, data, 2, 30], type: sql.QueryTypes.INSERT})
                         .then(function (response) {
 
                         //console.log(response);

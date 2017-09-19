@@ -5,6 +5,7 @@ exports.get_museums = getMuseums;
 exports.get_gardens = getGardens;
 exports.get_archeo_sites = getArcheoSites;
 exports.get_all = getAll;
+exports.get_count = getCountItem;
 
 var validator = require('validator');
 var eventsProxy = require("../" + config.base.pathFactory + '/EventsFactory.js');    
@@ -120,6 +121,20 @@ function getArcheoSites(req, res) {
                     
                     }).catch((error) => {
                             console.log({"section": 'getArcheoSites', "error": error})
+                            return res.json(error);
+                    });
+}
+
+
+function getCountItem(req, res) {
+
+    eventsProxy.getCoutItem(req.query)
+                    .then((result) => {
+                    
+                    return res.json(result);
+                    
+                    }).catch((error) => {
+                            console.log({"section": 'getCountItem', "error": error})
                             return res.json(error);
                     });
 }

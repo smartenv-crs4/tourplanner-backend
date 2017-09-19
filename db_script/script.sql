@@ -28,6 +28,8 @@ CREATE TABLE dat_archeo_site (
     id_archeo_site integer NOT NULL,
     fk_category smallint,
     fk_city smallint,
+    rating smallint,
+    time_to_visit smallint,
     data jsonb,
     _id character varying(100)
 );
@@ -64,6 +66,8 @@ CREATE TABLE dat_event (
     id_event bigint NOT NULL,
     fk_category smallint NOT NULL,
     fk_city smallint NOT NULL,
+    rating smallint,
+    time_to_visit smallint,
     data jsonb,
     _id character varying(800),
     txt_col tsvector
@@ -101,6 +105,8 @@ CREATE TABLE dat_garden (
     id_garden integer NOT NULL,
     fk_category smallint NOT NULL,
     fk_city smallint NOT NULL,
+    rating smallint,
+    time_to_visit smallint,
     data jsonb,
     _id character varying(100)
 );
@@ -137,6 +143,8 @@ CREATE TABLE dat_monument (
     id_monument integer NOT NULL,
     fk_category smallint,
     fk_city smallint,
+    rating smallint,
+    time_to_visit smallint,
     data jsonb,
     _id character varying
 );
@@ -173,6 +181,8 @@ CREATE TABLE dat_museum (
     id_museum integer NOT NULL,
     fk_category smallint NOT NULL,
     fk_city smallint NOT NULL,
+    rating smallint,
+    time_to_visit smallint,
     data jsonb,
     _id character varying(100)
 );
@@ -209,6 +219,8 @@ CREATE TABLE dat_restaurant (
     id_restaurant integer NOT NULL,
     fk_category smallint NOT NULL,
     fk_city smallint NOT NULL,
+    rating smallint,
+    time_to_visit smallint,
     data jsonb,
     _id character varying(100)
 );

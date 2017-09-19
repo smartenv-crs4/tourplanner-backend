@@ -44,6 +44,12 @@
     "GET": {
       "route": "get_archeo_sites"
         }
+    },
+    
+    "/count": {
+    "GET": {
+      "route": "get_count"
+        }
     }
     
 }
