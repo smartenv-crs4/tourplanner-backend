@@ -46,6 +46,12 @@
         }
     },
     
+    "/deals": {
+    "GET": {
+      "route": "get_deals"
+        }
+    },
+    
     "/count": {
     "GET": {
       "route": "get_count"

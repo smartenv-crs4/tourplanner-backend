@@ -4,6 +4,7 @@ exports.get_monuments = getMonuments;
 exports.get_museums = getMuseums;
 exports.get_gardens = getGardens;
 exports.get_archeo_sites = getArcheoSites;
+exports.get_deals = getDeals;
 exports.get_all = getAll;
 exports.get_count = getCountItem;
 
@@ -55,6 +56,23 @@ function getRestaurants(req, res) {
                     
                     }).catch((error) => {
                             console.log({"section": 'getRestaurants', "error": error})
+                            return res.json(error);
+                    });
+    
+    
+                        
+  }
+  
+  
+  function getDeals(req, res) {
+
+    eventsProxy.getDeals(req.query)
+                    .then((result) => {
+                    
+                    return res.json(result);
+                    
+                    }).catch((error) => {
+                            console.log({"section": 'getDeals', "error": error})
                             return res.json(error);
                     });
     
@@ -138,5 +156,7 @@ function getCountItem(req, res) {
                             return res.json(error);
                     });
 }
+
+
 
 
