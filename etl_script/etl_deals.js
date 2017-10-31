@@ -3,6 +3,7 @@
 
 var rp = require('request-promise');
 var format = require('pg-format');
+var moment = require('moment');
 
 const { Pool, Client } = require('pg');
 /*
@@ -36,15 +37,22 @@ t=promo
 get_data();
 
 async function get_data()  {
-
+    
+    var _today = moment(new Date());
+    var _td = _today.format("YYYY-MM-DD HH:mm");
+    var _today_1h = _today.add(- 120, 'm');
+    var _td1 = _today_1h.format("YYYY-MM-DD HH:mm");
+    
+                    
+     
     var options = {
-    uri: 'http://smartapi.crs4.it/api/content/v1/od/?t=promo',
+    uri: 'http://smartapi.crs4.it/api/content/v1/od/?t=promo&mds=' + _td1,
     headers: {
         'User-Agent': 'Request-Promise'
     },
     json: true // Automatically parses the JSON string in the response
 };
-    
+    //console.log(options.uri);
     await rp(options)
     .then(function (response) {
         data = response.promos;
@@ -64,10 +72,16 @@ async function get_data()  {
         try{
             let a = await check_data(data[i]._id);
             //console.log(a.num);
+            //console.log(data[i]);
+            
             if (a.num == 0){
-                await p_insert_db(data[i]);
-                 
+                await p_insert_db(data[i], 'ins');
             }
+            else
+            {    
+                await p_insert_db(data[i], 'upd');
+            }     
+            
         }
         catch (err)
          {
@@ -124,8 +138,9 @@ rp(options)
 
 
   
-function p_insert_db(docs)
+function p_insert_db(docs, type)
 {
+    
     return new Promise(function(resolve, reject){
     
         let data = {
@@ -143,8 +158,14 @@ function p_insert_db(docs)
     
     
     //console.log(data);
-    var sql  = format("insert into dat_deal (fk_category, fk_city, _id, data) values (7, 1, %L, %L) ",
-    docs._id, data)
+    
+    if (type == 'ins')
+        var sql  = format("insert into dat_deal (fk_category, fk_city, _id, data) values (7, 1, %L, %L) ",
+        docs._id, data)
+    else if (type == 'upd')
+        var sql  = format("update dat_deal set data = %L where _id = %L ", 
+        data, docs._id, data)
+        
     //var sql  = format("select 1 ")        
             //console.log(sql);
               client.query(sql, function (err, res) {
