@@ -1,143 +1,148 @@
 #!/usr/bin/env node
 
+var rp = require('request-promise');
+var format = require('pg-format');
 
-var pmongo = require('promised-mongo');
-var db = pmongo('156.148.14.146:3996/crawler', ['restaurants']);
+const { Pool, Client } = require('pg');
 
-var Sequelize = require('sequelize');
-var sql = new Sequelize('seitre_tour_planner', 'postgres', 'postgres_62', {
-  host: '156.148.14.146',
-  dialect: 'postgres',
-  port: 3998
-});
-  
+
+const client = new Client({
+  user: 'postgres',
+  password: 'postgres_62',
+  host: '156.148.14.146', 
+  database: 'seitre_tour_planner',
+  port: 3998,
+  statement_timeout: 30000
+})
+client.connect()
+
 /*
-var today = new Date();
-var dd = today.getDate();
-var mm = (today.getMonth()+1).toString(); //January is 0!
-var yyyy = today.getFullYear().toString();
+mds modify data start
+mde modify data end
+t=promo
+*/
 
-if (mm.length < 2) 
-    mm = '0' + mm;
-if (dd.length < 2) 
-    dd = '0' + dd;
+get_data();
 
+async function get_data()  {
+
+    var options = {
+    uri: 'http://seidue.crs4.it:3020/api/v1/restaurants?limit=400',
+    headers: {
+        'User-Agent': 'Request-Promise'
+    },
+    json: true // Automatically parses the JSON string in the response
+};
     
-var str_data = yyyy + '-' + mm + '-' + dd;   
-
-str_data = '2017-02-08';
-  
-*/  
-p_data().then(console.log('data promise'));  
- 
-
-//insert_data(0);
-
-  
- /*
- Script import restaurants
- 
- 
- */
-  
-  function insert_data(str_data)
-{
-  
+    await rp(options)
+    .then(function (response) {
+        //nsole.log(response);
+        data = response;
+    })
+    .catch(function (err) {
+        console.log(err);
+    });
     
-    //var _limit = 50;
-    
-    db.restaurants.find({}).toArray().then(function(docs){
-        for (i = 0; i< docs.length; i++) {    
-            data_insert(docs[i]);
+     
+     
+     for (var i = 0; i < data.length; i++){
+         
+        try{
+            let a = await check_data(data[i].title);
+            //console.log(a.num);
+            if (a.num == 0){
+                if (data[i].latitude)
+                    await p_insert_db(data[i]);
+                 
+            }
         }
-          
-  }).then(function(){
-    db.close();
-      
-  }).catch(function (ex) {
-                            console.log("MongoDb Error -> " + ex);
-                            return ex;
-                        });
-
-
-
-
-return 1;
+        catch (err)
+         {
+             console.log(err);
+         }
+         
+        
+     }
+     
+     client.end()
+     
+     
+               
+    
+        
 }
 
-
-
-
-
-function data_insert(docs)
- {
-     
-     str_query = "insert into dat_restaurant (fk_category, fk_city, _id, data, rating, time_to_visit) "
-     + "values ($1, "
-     + "$2, "
-     + "$3, "
-     + "$4, "
-     + "$5, "
-     + "$6 "
-     + ")";
-     
-     data = {
+function p_insert_db(docs)
+{
+    return new Promise(function(resolve, reject){
+    
+        if (docs.lat)
+          docs.lat = parseFloat(docs.lat);
+        if (docs.lat)
+          docs.long =  parseFloat(docs.long);  
+            
+        
+        let data = {
              "title":           docs.title
              , "description":   docs.description
              , "phone":         docs.phone
              , "latitude":      docs.latitude
              , "longitude":     docs.longitude
-             , "address":       docs.address};
-     
-     sql.query(str_query, {bind: [1,1, docs._id, data, 1, 60], type: sql.QueryTypes.INSERT})
-                        .then(function (response) {
-
-                        //console.log(response);
-                        sql.close();    
-                        return response.OkPacket;
-                        })
-                        .catch(function (ex) {
-                            console.log(ex);
-                            console.log("postgres error:" +ex);
-                        });
-                        
- 
- 
- }
- 
- function check_data(_id)
- {
-     str_query = "select count(*) num  from dat_restaurant whwre id = $1 ";
-     
-     sql.query(str_query, {bind: [_id], type: sql.QueryTypes.SELECT})
-                        .then(function (response) {
-
-                        //console.log(response);
-                        sql.close();    
-                        return response;
-                        })
-                        .catch(function (ex) {
-                            console.log(ex);
-                            console.log("postgres error:" +ex);
-                        });
-     
- }
- 
- function p_data()
- {
-    return new Promise(function(resolve, reject){
+             , "address":       docs.address
+             };
     
-        var a = insert_data();
+    //console.log(data);
+    
+    _rating = Math.floor((Math.random() * 5) + 1);
+    _time_to_visit = Math.floor((Math.random() * 20) + 1);
+    
+    
+    
+    
+    let sql  = format("insert into dat_restaurant (fk_category, fk_city, _id, DATA, rating, time_to_visit) values (5, 1, %L, %L, %s, 0) ",
+    docs._id, data, _rating);
+    // var sql  = format("select 1 ")        
+            //console.log(sql);
+              client.query(sql, function (err, res) {
+                if (err) {
+                    console.log(err.stack)
+                    reject(err.stack);
+                }
+                //console.log(res.rows[0])
+                resolve (res)
+                //return res.rows[0]
+              })
+
+    
+    })
+    
+    } 
+
+
+  
+    function check_data(_title)
+    {
+        return new Promise(function(resolve, reject){
+    
         
-        if (a == 1)
-            resolve(a);
-        else
-            reject(Error("a"));
     
-    }) 
- }
- 
- 
- 
- 
- 
+    var sql  = format("select count(*) num  from dat_restaurant where data->>'title' = %L",  _title)
+            
+              //console.log(sql);
+              client.query(sql, function (err, res) {
+                if (err) {
+                    console.log(err.stack)
+                    reject(err.stack);
+                }
+                //console.log(res.rows[0])
+                resolve (res.rows[0])
+                
+              })
+
+    
+    })
+    }
+
+
+
+
