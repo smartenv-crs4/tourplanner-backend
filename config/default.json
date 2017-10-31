@@ -1,6 +1,6 @@
 {
   "base": {
-    "port": 3000,
+    "port": 3009,
     "dbSync": false,
     "signup": true,
     "pathModelsSQL": "./api/modelsSQL",
