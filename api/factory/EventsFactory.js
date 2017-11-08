@@ -188,7 +188,7 @@ function getRestaurants(params) {
                 str_search_geo = " and 6363 * sqrt( POW( RADIANS(cast('"+ params.lat +"' as numeric)) - "
                 + "    RADIANS(case when data->>'latitude' <> '' then cast(data->>'latitude' AS numeric) else 0 end) , 2 ) + POW( RADIANS(cast('"+ params.lng +"' as numeric)) "
                 + "    - RADIANS(case when data->>'longitude' <> '' then cast(data->>'longitude' AS numeric) else 0 end) , 2 ) ) "
-                + " < 0.5"; 
+                + " < 0.4"; 
        }
        
 
