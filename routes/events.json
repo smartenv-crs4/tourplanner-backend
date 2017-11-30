@@ -40,7 +40,7 @@
         }
     },
     
-    "/archeoSites": {
+    "/archeology": {
     "GET": {
       "route": "get_archeo_sites"
         }

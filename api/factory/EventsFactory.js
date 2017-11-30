@@ -301,7 +301,7 @@ function getMonuments(params) {
 
 
     if (params.lat && params.lng)
-   {
+    {
        if (!validator.toFloat(params.lat) || !validator.toFloat(params.lng))
         reject(getError("validation", "lang"));
        else
