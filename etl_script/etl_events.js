@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#! /home/seitre/.nvm/versions/node/v8.8.1/bin/node
 
 
 var pmongo = require('promised-mongo');
