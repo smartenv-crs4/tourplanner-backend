@@ -147,7 +147,7 @@ function data_insert(docs)
  
  function check_data(_id)
  {
-     str_query = "select count(*) num  from dat_event whwre id = $1 ";
+     str_query = "select count(*) num  from dat_event where id = $1 ";
      
      sql.query(str_query, {bind: [_id], type: sql.QueryTypes.SELECT})
                         .then(function (response) {
