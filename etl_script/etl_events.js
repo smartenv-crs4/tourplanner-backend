@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#! /home/seitre/.nvm/versions/node/v8.8.1/bin/node
 
 
 var pmongo = require('promised-mongo');
@@ -49,23 +49,23 @@ p_data().then(console.log('data promise'));
     db.events.find({}).sort({startDate: -1}).limit(_limit).toArray().then(function(docs){
     
     
-        console.log(docs.startDate);
+       // console.log(docs.startDate);
         var jDate;
         var diff;
         var dayDiff = -1;
         var today = new Date();
         
         for (i = 0; i< docs.length; i++) {
-        console.log(docs[i].startDate);
+        //console.log(docs[i].startDate);
         
         jDate = new Date(docs[i].startDate);
         //console.log(jDate.getTime());
-        console.log(jDate);
+        //console.log(jDate);
         diff = jDate.getTime() - today.getTime();
         if (diff > 0)
         {
             dayDiff = parseInt(diff / (24 * 60 * 60 * 1000), 10) + 1;
-            console.log(dayDiff);
+            //console.log(dayDiff);
             if (dayDiff >= 0)
             {
                 data_insert(docs[i]);
@@ -157,7 +157,7 @@ function data_insert(docs)
                         return response;
                         })
                         .catch(function (ex) {
-                            console.log(ex);
+                            //console.log(ex);
                             console.log("postgres error:" +ex);
                         });
      
