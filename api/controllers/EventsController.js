@@ -163,7 +163,7 @@ function getArcheoSites(req, res) {
 
 function getCountItem(req, res) {
 
-    eventsProxy.getCoutItem(req.query)
+    eventsProxy.getCountItem(req.query)
                     .then((result) => {
                     
                     return res.json(result);

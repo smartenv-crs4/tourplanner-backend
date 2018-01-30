@@ -7,7 +7,7 @@ exports.getGardens = getGardens;
 exports.getArcheoSites = getArcheoSites;
 exports.getDeals = getDeals;
 exports.getShopping = getShopping;
-exports.getCoutItem = getCoutItem;
+exports.getCountItem = getCountItem;
 
 var validator = require('validator');
 
@@ -609,7 +609,7 @@ function getNeighbour(params)
 }
 */
 
-function getCoutItem()
+function getCountItem()
 {
     return new Promise(function(resolve, reject){
     
@@ -619,8 +619,8 @@ function getCoutItem()
                     + " , (select count(*) from dat_monument) as monument"
                     + " , (select count(*) from dat_garden) as garden"
                     + " , (select count(*) from dat_restaurant) as restaurant"
-                    + " , (select count(*) from dat_event) as event",
-                    + " , (select count(*) from dat_deal) as deal",
+                    + " , (select count(*) from dat_event) as event"
+                    + " , (select count(*) from dat_deal) as deal"
                     + " , (select count(*) from dat_shopping) as shopping",
                         {
                             type: sql.sequelize.QueryTypes.SELECT
