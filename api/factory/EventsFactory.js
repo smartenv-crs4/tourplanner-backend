@@ -6,6 +6,7 @@ exports.getMuseums = getMuseums;
 exports.getGardens = getGardens;
 exports.getArcheoSites = getArcheoSites;
 exports.getDeals = getDeals;
+exports.getShopping = getShopping;
 exports.getCoutItem = getCoutItem;
 
 var validator = require('validator');
@@ -273,6 +274,56 @@ function getRestaurants(params) {
     })
     
     } 
+
+
+
+
+    function getShopping(params) {
+
+        return new Promise(function(resolve, reject){
+        
+        var str_search = '';
+        var str_search_geo = '';
+        
+        if (params.address)
+            str_search =+ " and data->>'address' like '%" + params.address + "%'";
+
+    
+        if (params.lat && params.lng)
+       {
+           if (!validator.toFloat(params.lat) || !validator.toFloat(params.lng))
+            reject(getError("validation", "lang"));
+           else
+           {
+                    str_search_geo = " and 6363 * sqrt( POW( RADIANS(cast('"+ params.lat +"' as numeric)) - "
+                    + "    RADIANS(case when data->>'latitude' <> '' then cast(data->>'latitude' AS numeric) else 0 end) , 2 ) + POW( RADIANS(cast('"+ params.lng +"' as numeric)) "
+                    + "    - RADIANS(case when data->>'longitude' <> '' then cast(data->>'longitude' AS numeric) else 0 end) , 2 ) ) "
+                    + " < 0.5"; 
+           }
+           
+    
+        }
+        
+        //console.log(str_search);
+    
+        sql.sequelize.query("select id_shopping, data from dat_shopping "
+                        + " where 1 = 1 " + str_search  + str_search_geo,
+                            {
+                                type: sql.sequelize.QueryTypes.SELECT
+                            })
+                            .then(function (response) {
+    
+                            resolve(response);    
+                            })
+                            .catch(function (ex) {
+                                console.log(ex);
+                                reject(getError("get deals", ex));
+                            });
+    
+        })
+        
+        } 
+
 
 function getMonuments(params) {
 
@@ -569,6 +620,8 @@ function getCoutItem()
                     + " , (select count(*) from dat_garden) as garden"
                     + " , (select count(*) from dat_restaurant) as restaurant"
                     + " , (select count(*) from dat_event) as event",
+                    + " , (select count(*) from dat_deal) as deal",
+                    + " , (select count(*) from dat_shopping) as shopping",
                         {
                             type: sql.sequelize.QueryTypes.SELECT
                         })

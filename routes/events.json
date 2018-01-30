@@ -51,6 +51,12 @@
       "route": "get_deals"
         }
     },
+
+    "/shopping": {
+      "GET": {
+        "route": "get_shopping"
+          }
+      },
     
     "/count": {
     "GET": {
