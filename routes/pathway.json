@@ -1,0 +1,12 @@
+{
+    "GLOBAL": {
+      "baseUrl": "/api/v1"
+    },
+  
+    
+    "/pathway": {
+      "POST": {
+        "route": "insertPathway"
+          }
+      }
+}
