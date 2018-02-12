@@ -1,12 +1,34 @@
 {
-    "GLOBAL": {
-      "baseUrl": "/api/v1"
+  "GLOBAL": {
+    "baseUrl": "/api/v1"
+  },
+
+
+  "/pathway": {
+    "GET": {
+      "route": "get"
+        }
     },
-  
-    
-    "/pathway": {
-      "POST": {
-        "route": "insertPathway"
-          }
-      }
-}
+
+
+    "/pathwayJson": {
+    "GET": {
+      "route": "getJson"
+        }
+    },
+
+    "/pathway.csv": {
+    "GET": {
+      "route": "getFileCsv"
+        }
+    },
+
+    "/pathway.json": {
+    "GET": {
+      "route": "getFileJson"
+        }
+    }
+
+     
+
+  }
