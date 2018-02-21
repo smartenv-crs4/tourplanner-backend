@@ -4,12 +4,16 @@
   },
 
 
+  
+
   "/pathway": {
     "GET": {
       "route": "get"
-        }
+        },
+        "POST": {
+          "route": "insertPathway"
+            }
     },
-
 
     "/pathwayJson": {
     "GET": {

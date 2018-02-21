@@ -16,26 +16,48 @@ var eventsProxy = require("../" + config.base.pathFactory + '/EventsFactory.js')
 function insert(params)    {
     
 
-    //console.log(params);
     return new Promise(function(resolve, reject){    
-   
     
-    sql.sequelize.query("insert into dat_pathway  (fk_city, data_ins, data)  "
-                        + " values "
-                        + "(1, now()"
-                        + ",$data)",
-                            {
-                                bind: { 'data': params }
-                                , type: sql.sequelize.QueryTypes.INSERT
-                            })
-                            .then(function (response) {
-                                resolve(response);    
-                            })
-                            .catch(function (ex) {
-                                console.log(ex);
-                                reject(getError("insert pathway", ex));
-                            });    
-            
+    sql.sequelize.query("select count(*) as num from dat_pathway where data->>'_id' = $_id  ",
+        {
+            bind: { '_id': params._id }
+            , type: sql.sequelize.QueryTypes.SELECT
+        })
+        .then(function (result){
+                
+                if (result[0].num == 0)
+                {
+                    sql.sequelize.query("insert into dat_pathway  (fk_city, data_ins, data)  "
+                    + " values "
+                    + "(1, now()"
+                    + ",$data)",
+                        {
+                            bind: { 'data': params }
+                            , type: sql.sequelize.QueryTypes.INSERT
+                        })
+                        .then(function (response) {
+                            resolve(1);    
+                        })
+                        .catch(function (ex) {
+                            console.log(ex);
+                            reject(getError("insert pathway", ex));
+                        });    
+                }
+                else
+                {
+                    resolve(0);
+                }
+                
+
+        })
+        .catch(function (ex) {
+            console.log(ex);
+            reject(getError("count insert pathway", ex));
+        }); 
+
+    /*
+    
+     */       
             
             
         })        
