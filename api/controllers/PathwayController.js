@@ -36,7 +36,7 @@ function insert(params)    {
                             , type: sql.sequelize.QueryTypes.INSERT
                         })
                         .then(function (response) {
-                            resolve(1);    
+                            resolve({'value': 1});    
                         })
                         .catch(function (ex) {
                             console.log(ex);
@@ -45,7 +45,7 @@ function insert(params)    {
                 }
                 else
                 {
-                    resolve(0);
+                    resolve({'value': 0});
                 }
                 
 
