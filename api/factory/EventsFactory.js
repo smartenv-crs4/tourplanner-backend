@@ -619,7 +619,7 @@ function getCountItem()
                     + " , (select count(*) from dat_monument) as monument"
                     + " , (select count(*) from dat_garden) as garden"
                     + " , (select count(*) from dat_restaurant) as restaurant"
-                    + " , (select count(*) from dat_event) as event"
+                    + " , (select count(*) from dat_event where to_date(data->>'startDate', 'YYYY MM DD')  - current_date >= 0) as event"
                     + " , (select count(*) from dat_deal) as deal"
                     + " , (select count(*) from dat_shopping) as shopping",
                         {
