@@ -50,13 +50,12 @@ async function get_data()  {
     headers: {
         'User-Agent': 'Request-Promise'
     },
-    json: true // Automatically parses the JSON string in the response
+    json: true 
 };
-    //console.log(options.uri);
+    
     await rp(options)
     .then(function (response) {
         
-    //console.log(response.promos);
     data = response.promos;
     
     })
@@ -68,14 +67,12 @@ async function get_data()  {
      
      //console.log(data);
      
-     //for (var i in data) 
+     
      for (var i = 0; i < data.length; i++){
-         //console.log('--------------------------------------------------------------');
-        //console.log(data[i]);
+         
         try{
             let a = await check_data(data[i]._id);
-            //console.log(a.num);
-            //console.log(data[i]);
+            
             
             if (a.num == 0){
                 await p_insert_db(data[i], 'ins');
@@ -90,7 +87,6 @@ async function get_data()  {
          {
              console.log(err);
          }
-        //console.log(i + ' +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
         
         
      }
