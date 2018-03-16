@@ -55,7 +55,10 @@ async function get_data()  {
     //console.log(options.uri);
     await rp(options)
     .then(function (response) {
-        data = response.promos;
+        
+    //console.log(response.promos);
+    data = response.promos;
+    
     })
     .catch(function (err) {
         console.log(err);
@@ -146,7 +149,7 @@ function p_insert_db(docs, type)
         let data = {
              "title":           docs.name
              , "description":   docs.description
-             , "img":           docs.images
+             , "img":           docs.images + '?access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJtb2RlIjoibXMiLCJpc3MiOiJub3QgdXNlZCBmbyBtcyIsImVtYWlsIjoibm90IHVzZWQgZm8gbXMiLCJ0eXBlIjoiY29udGVudHVpIiwiZW5hYmxlZCI6dHJ1ZSwiZXhwIjoxODM2ODMxMTA1MTYwfQ.a3ff3KIEjhNNDLYH7AfmvVgPXAkv_XqFLIiN8UTQxVQ'
              , "latitude":      docs.lat
              , "longitude":     docs.lon
              , "address":       docs.address
