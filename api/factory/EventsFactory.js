@@ -232,14 +232,26 @@ function getRestaurants(params) {
         else
             str_search =+ " and to_date(data->>'endDate', 'YYYY MM DD') <= '" + end_date + "'";
     }
+    
+    
+    
+    console.log('-----------------------------------');
+    console.log(str_search);
+    
+    
     if (params.start_date) 
-    {
-        if (!validator.toDate(params.start_date))
-            reject(getError("validation", "start_date"));
-        else
-        str_search =+ " and to_date(data->>'startDate', 'YYYY MM DD') >= '" + start_date + "'";    
-    }
+        {
+            if (!validator.toDate(params.start_date))
+                reject(getError("validation", "start_date"));
+            else
+                str_search =+ " and to_date(data->>'startDate', 'YYYY MM DD') >= '" + start_date + "'";
+        }
+    else
+        str_search = str_search + " and to_date(data->>'startDate', 'YYYY MM DD') >= CURRENT_DATE";
+        
 
+    
+    
     if (params.lat && params.lng)
    {
        if (!validator.toFloat(params.lat) || !validator.toFloat(params.lng))
