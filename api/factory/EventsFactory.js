@@ -318,7 +318,7 @@ function getRestaurants(params) {
         
         //console.log(str_search);
     
-        sql.sequelize.query("select id_shopping, data, rating from dat_shopping "
+        sql.sequelize.query("select id_shopping, data, rating, time_to_visit from dat_shopping "
                         + " where 1 = 1 " + str_search  + str_search_geo,
                             {
                                 type: sql.sequelize.QueryTypes.SELECT
