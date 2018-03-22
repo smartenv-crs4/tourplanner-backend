@@ -563,7 +563,7 @@ return new Promise(function(resolve, reject){
     
     //console.log(str_search);
 
-    sql.sequelize.query("select id_archeo_site, data, rating, time_to_visit from dat_archeo_site "
+    sql.sequelize.query("select id_archeo_site, fk_category, data, rating, time_to_visit from dat_archeo_site "
                     + " where 1 = 1 " + str_search + str_search_geo,
                         {
                             type: sql.sequelize.QueryTypes.SELECT
