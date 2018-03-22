@@ -136,7 +136,7 @@ function getEvents(params)    {
     
     //console.log(str_search);
 
-    sql.sequelize.query("select id_event, data, rating, time_to_visit from dat_event "
+    sql.sequelize.query("select id_event,  fk_category, data, rating, time_to_visit from dat_event "
                     + " where to_date(data->>'startDate', 'YYYY MM DD')  - current_date >= 0 " + str_search + str_search_geo,
                         {
                             type: sql.sequelize.QueryTypes.SELECT
@@ -197,7 +197,7 @@ function getRestaurants(params) {
     
     //console.log(str_search);
 
-    sql.sequelize.query("select id_restaurant, data, rating, time_to_visit from dat_restaurant "
+    sql.sequelize.query("select id_restaurant, fk_category, data, rating, time_to_visit from dat_restaurant "
                     + " where 1 = 1 " + str_search  + str_search_geo,
                         {
                             type: sql.sequelize.QueryTypes.SELECT
@@ -269,7 +269,7 @@ function getRestaurants(params) {
     
     //console.log(str_search);
 
-    sql.sequelize.query("select id_deal, data from dat_deal "
+    sql.sequelize.query("select id_deal, fk_category, data from dat_deal "
                     + " where 1 = 1 " + str_search  + str_search_geo,
                         {
                             type: sql.sequelize.QueryTypes.SELECT
@@ -318,7 +318,7 @@ function getRestaurants(params) {
         
         //console.log(str_search);
     
-        sql.sequelize.query("select id_shopping, data, rating, time_to_visit from dat_shopping "
+        sql.sequelize.query("select id_shopping, fk_category, data, rating, time_to_visit from dat_shopping "
                         + " where 1 = 1 " + str_search  + str_search_geo,
                             {
                                 type: sql.sequelize.QueryTypes.SELECT
@@ -380,7 +380,7 @@ function getMonuments(params) {
     
     //console.log(str_search);
 
-    sql.sequelize.query("select id_monument, data, rating, time_to_visit from dat_monument "
+    sql.sequelize.query("select id_monument, fk_category, data, rating, time_to_visit from dat_monument "
                     + " where 1 = 1 " + str_search + str_search_geo,
                         {
                             type: sql.sequelize.QueryTypes.SELECT
@@ -441,7 +441,7 @@ function getMuseums(params) {
     
     //console.log(str_search);
 
-    sql.sequelize.query("select id_museum, data, rating, time_to_visit from dat_museum "
+    sql.sequelize.query("select id_museum, fk_category, data, rating, time_to_visit from dat_museum "
                     + " where 1 = 1 " + str_search + str_search_geo,
                         {
                             type: sql.sequelize.QueryTypes.SELECT
@@ -502,7 +502,7 @@ function getGardens(params) {
     
     //console.log(str_search);
 
-    sql.sequelize.query("select id_garden, data, rating, time_to_visit from dat_garden "
+    sql.sequelize.query("select id_garden, fk_category, data, rating, time_to_visit from dat_garden "
                     + " where 1 = 1 " + str_search + str_search_geo,
                         {
                             type: sql.sequelize.QueryTypes.SELECT
@@ -563,7 +563,7 @@ return new Promise(function(resolve, reject){
     
     //console.log(str_search);
 
-    sql.sequelize.query("select id_archeo_site, data, rating, time_to_visit from dat_archeo_site "
+    sql.sequelize.query("select id_archeo_site, fk_category, data, rating, time_to_visit from dat_archeo_site "
                     + " where 1 = 1 " + str_search + str_search_geo,
                         {
                             type: sql.sequelize.QueryTypes.SELECT
