@@ -43,8 +43,6 @@ async function get_data()  {
     var _today_1h = _today.add(- 120, 'm');
     var _td1 = _today_1h.format("YYYY-MM-DD HH:mm");
     
-    console.log(_td1);                
-     
     var options = {
     //uri: 'http://smartapi.crs4.it/api/content/v1/od/?t=promo&ptype=1&mds=' + _td1, // ptype = 1 deals, ptype = 2 events
     uri: 'http://smartapi.crs4.it/api/content/v1/od/?t=promo&mds=' + _td1, // ptype = 1 deals, ptype = 2 events

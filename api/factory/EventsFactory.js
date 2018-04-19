@@ -9,6 +9,8 @@ exports.getDeals = getDeals;
 exports.getShopping = getShopping;
 exports.getCountItem = getCountItem;
 
+
+var moment = require('moment');
 var validator = require('validator');
 
 
@@ -136,7 +138,7 @@ function getEvents(params)    {
     
     //console.log(str_search);
 
-    sql.sequelize.query("select id_event,  fk_category, data, rating, time_to_visit from dat_event "
+    sql.sequelize.query("select id_event,  fk_category, data, rating, time_to_visit, accessibility from dat_event "
                     + " where to_date(data->>'startDate', 'YYYY MM DD')  - current_date >= 0 " + str_search + str_search_geo,
                         {
                             type: sql.sequelize.QueryTypes.SELECT
@@ -197,7 +199,7 @@ function getRestaurants(params) {
     
     //console.log(str_search);
 
-    sql.sequelize.query("select id_restaurant, fk_category, data, rating, time_to_visit from dat_restaurant "
+    sql.sequelize.query("select id_restaurant, fk_category, data, rating, time_to_visit, accessibility from dat_restaurant "
                     + " where 1 = 1 " + str_search  + str_search_geo,
                         {
                             type: sql.sequelize.QueryTypes.SELECT
@@ -208,6 +210,7 @@ function getRestaurants(params) {
                         })
                         .catch(function (ex) {
                             console.log(ex);
+                            sequelize.close();
                             reject(getError("get restaurants", ex));
                         });
 
@@ -224,41 +227,39 @@ function getRestaurants(params) {
     var str_search_geo = '';
     
     if (params.address)
-        str_search =+ " and data->>'address' like '%" + params.address + "%'";
+        str_search += " and data->>'address' like '%" + moment(params.address).toISOString() + "%'";
+    
+    
     if (params.end_date) 
     {
         if (!validator.toDate(params.end_date))
             reject(getError("validation", "end_date"));
         else
-            str_search =+ " and to_date(data->>'endDate', 'YYYY MM DD') <= '" + end_date + "'";
+            str_search += " and data->>'startDate' <= '" + moment(params.end_date).toISOString() + "'";
     }
-    
-    
-    
-    console.log('-----------------------------------');
-    console.log(str_search);
-    
     
     if (params.start_date) 
         {
+            let start_data_max = moment(params.start_date).add(8, 'hour');
+            
+            
             if (!validator.toDate(params.start_date))
                 reject(getError("validation", "start_date"));
             else
-                str_search =+ " and to_date(data->>'startDate', 'YYYY MM DD') >= '" + start_date + "'";
+                str_search += " and data->>'startDate' >= '" + moment(params.start_date).toISOString() + "' and data->>'startDate' < '" + start_data_max.toISOString() + "'";
         }
     else
-        str_search = str_search + " and to_date(data->>'startDate', 'YYYY MM DD') >= CURRENT_DATE";
+        str_search += " and data->>'startDate' >= CURRENT_DATE";
         
-
     
     
-    if (params.lat && params.lng)
+    if (params.lat && params.lng) 
    {
        if (!validator.toFloat(params.lat) || !validator.toFloat(params.lng))
         reject(getError("validation", "lang"));
        else
        {
-                str_search_geo = " and 6363 * sqrt( POW( RADIANS(cast('"+ params.lat +"' as numeric)) - "
+                str_search_geo += " and 6363 * sqrt( POW( RADIANS(cast('"+ params.lat +"' as numeric)) - "
                 + "    RADIANS(case when data->>'latitude' <> '' then cast(data->>'latitude' AS numeric) else 0 end) , 2 ) + POW( RADIANS(cast('"+ params.lng +"' as numeric)) "
                 + "    - RADIANS(case when data->>'longitude' <> '' then cast(data->>'longitude' AS numeric) else 0 end) , 2 ) ) "
                 + " < 0.5"; 
@@ -268,18 +269,21 @@ function getRestaurants(params) {
     }
     
     //console.log(str_search);
-
+    
+    
+    
     sql.sequelize.query("select id_deal, fk_category, data from dat_deal "
                     + " where 1 = 1 " + str_search  + str_search_geo,
                         {
                             type: sql.sequelize.QueryTypes.SELECT
                         })
                         .then(function (response) {
-
-                        resolve(response);    
+                            
+                            resolve(response);    
                         })
                         .catch(function (ex) {
                             console.log(ex);
+                            sql.sequelize.close();
                             reject(getError("get deals", ex));
                         });
 
@@ -318,7 +322,7 @@ function getRestaurants(params) {
         
         //console.log(str_search);
     
-        sql.sequelize.query("select id_shopping, fk_category, data, rating, time_to_visit from dat_shopping "
+        sql.sequelize.query("select id_shopping, fk_category, data, rating, time_to_visit, accessibility from dat_shopping "
                         + " where 1 = 1 " + str_search  + str_search_geo,
                             {
                                 type: sql.sequelize.QueryTypes.SELECT
@@ -380,7 +384,7 @@ function getMonuments(params) {
     
     //console.log(str_search);
 
-    sql.sequelize.query("select id_monument, fk_category, data, rating, time_to_visit from dat_monument "
+    sql.sequelize.query("select id_monument, fk_category, data, rating, time_to_visit, accessibility from dat_monument "
                     + " where 1 = 1 " + str_search + str_search_geo,
                         {
                             type: sql.sequelize.QueryTypes.SELECT
@@ -441,7 +445,7 @@ function getMuseums(params) {
     
     //console.log(str_search);
 
-    sql.sequelize.query("select id_museum, fk_category, data, rating, time_to_visit from dat_museum "
+    sql.sequelize.query("select id_museum, fk_category, data, rating, time_to_visit, accessibility from dat_museum "
                     + " where 1 = 1 " + str_search + str_search_geo,
                         {
                             type: sql.sequelize.QueryTypes.SELECT
@@ -502,7 +506,7 @@ function getGardens(params) {
     
     //console.log(str_search);
 
-    sql.sequelize.query("select id_garden, fk_category, data, rating, time_to_visit from dat_garden "
+    sql.sequelize.query("select id_garden, fk_category, data, rating, time_to_visit, accessibility from dat_garden "
                     + " where 1 = 1 " + str_search + str_search_geo,
                         {
                             type: sql.sequelize.QueryTypes.SELECT
@@ -563,7 +567,7 @@ return new Promise(function(resolve, reject){
     
     //console.log(str_search);
 
-    sql.sequelize.query("select id_archeo_site, fk_category, data, rating, time_to_visit from dat_archeo_site "
+    sql.sequelize.query("select id_archeo_site, fk_category, data, rating, time_to_visit, accessibility from dat_archeo_site "
                     + " where 1 = 1 " + str_search + str_search_geo,
                         {
                             type: sql.sequelize.QueryTypes.SELECT
