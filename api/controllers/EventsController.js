@@ -12,7 +12,15 @@ exports.get_count = getCountItem;
 var validator = require('validator');
 var eventsProxy = require("../" + config.base.pathFactory + '/EventsFactory.js');    
     
-
+/**
+* Get all the POI
+* 
+* @param req
+•    title: stringa identificativa del poi
+•    lat: latitudine
+•    lng: longitudine
+* @param res
+*/
 
 function getAll (req, res)
 {
@@ -27,7 +35,18 @@ function getAll (req, res)
                     });
 }
 
+/**
+* Permette di visualizzare ricercare  tutti i poi di tipo "Eventi" presenti
+* 
+* @param req
+•    address: indirizzo 
+•    end_date: data inizio
+•    start_date: data fine
+•    lat: latitudine
+•    lng: longitudine
 
+* @param res
+*/
 
 
 function getEvents(req, res) {
@@ -46,7 +65,15 @@ function getEvents(req, res) {
 
 }
 
-
+/**
+* Permette di visualizzare ricercare  tutti i poi di tipo "Ristoranti" presenti
+* 
+* @param req
+•    address: indirizzo 
+•    lat: latitudine
+•    lng: longitudine
+* @param res
+*/
 
 function getRestaurants(req, res) {
 
@@ -63,7 +90,18 @@ function getRestaurants(req, res) {
     
                         
   }
-  
+  /**
+  * Permette di visualizzare ricercare  tutti i poi di tipo "Offerte" presenti
+  * 
+  * @param req
+  •    address: indirizzo
+  •    end_date: data inizio
+  •    start_date: data fine 
+  •    lat: latitudine
+  •    lng: longitudine
+
+  * @param res
+  */
   
   function getDeals(req, res) {
 
@@ -81,6 +119,15 @@ function getRestaurants(req, res) {
                         
   }
 
+  /**
+  * Permette di visualizzare ricercare  tutti i poi di tipo "Negozi" presenti
+  * 
+  * @param req
+  •    address: indirizzo 
+  •    lat: latitudine
+  •    lng: longitudine
+  * @param res
+  */
 
   function getShopping(req, res) {
 
@@ -97,7 +144,15 @@ function getRestaurants(req, res) {
         
                             
       }
-
+/**
+* Permette di visualizzare ricercare  tutti i poi di tipo "Monumenti" presenti
+* 
+* @param req
+•    address: indirizzo 
+•    lat: latitudine
+•    lng: longitudine
+* @param res
+*/
 
 function getMonuments(req, res) {
 
@@ -114,7 +169,15 @@ function getMonuments(req, res) {
     
 }
 
-
+/**
+* Permette di visualizzare ricercare  tutti i poi di tipo "Musei" presenti
+* 
+* @param req
+•    address: indirizzo 
+•    lat: latitudine
+•    lng: longitudine
+* @param res
+*/
 
 function getMuseums(req, res) {
 
@@ -132,6 +195,16 @@ function getMuseums(req, res) {
     }
 
 
+/**
+* Permette di visualizzare ricercare  tutti i poi di tipo "Giardini" presenti
+* 
+* @param req
+•    address: indirizzo 
+•    lat: latitudine
+•    lng: longitudine
+* @param res
+*/
+
 function getGardens(req, res) {
 
     
@@ -146,6 +219,16 @@ function getGardens(req, res) {
                     });
 }
 
+
+/**
+* Permette di visualizzare ricercare  tutti i poi di tipo "Siti archeologici" presenti
+* 
+* @param req
+•    address: indirizzo 
+•    lat: latitudine
+•    lng: longitudine
+* @param res
+*/
 
 function getArcheoSites(req, res) {
 

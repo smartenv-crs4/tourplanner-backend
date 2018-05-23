@@ -1,8 +1,8 @@
 #! /home/seitre/.nvm/versions/node/v8.8.1/bin/node
 
-
+var rp = require('request-promise');
 var pmongo = require('promised-mongo');
-var db = pmongo('156.148.14.146:3996/crawler', ['events']);
+//var db = pmongo('156.148.14.146:3996/crawler', ['events']);
 var moment = require('moment');
 var Sequelize = require('sequelize');
 var sql = new Sequelize('seitre_tour_planner', 'postgres', 'postgres_62', {
@@ -10,7 +10,8 @@ var sql = new Sequelize('seitre_tour_planner', 'postgres', 'postgres_62', {
   dialect: 'postgres',
   port: 3998
 });
-  
+
+var url = 'http://seitre.crs4.it:3000/api/v1/events';
  
 insert();
 
@@ -37,8 +38,10 @@ async function insert()
 
     try
         {
-            const docs = await db.events.find({startDate: {'$gte': data_from, '$lte': data_to}}).sort({startDate: 1}).limit(_limit).toArray();
-            //console.log(docs);
+            const docs = await getEvents(data_from, data_to);
+            
+            //const docs = await db.events.find({startDate: {'$gte': data_from, '$lte': data_to}}).sort({startDate: 1}).limit(_limit).toArray();
+            console.log(docs);
             for (i = 0; i< docs.length; i++) {
                     //console.log(docs[i].startDate);
                     str_query = "select count(*) num  from dat_event where _id = $1 ";
@@ -71,15 +74,57 @@ async function insert()
                     }
             
             }
-            await db.close();
+            //await db.close();
             await sql.close();
         }
         catch (ex)
         {
-            console.log('eror: ' + ex);
-            db.close();
+            console.log('error: ' + ex);
+            //db.close();
             sql.close();
         }
+}
+
+
+
+
+
+
+
+
+
+
+function getEvents(data_from, data_to)
+{
+url = url+ '?sdata='+data_from+'&edata='+ data_to;
+console.log(url);
+return new Promise(function(resolve, reject){
+
+    var options = {
+        uri: url,
+        headers: {
+            'User-Agent': 'Request-Promise'
+        },
+    json: true // Automatically parses the JSON string in the response
+};
+
+    rp(options)
+    .then(function (response) {
+        //console.log(response.result.count);
+        resolve(response);
+        
+    
+
+        
+    })
+    .catch(function (err) {
+        console.log(err);
+        reject(error({'error': 'get events', 'details': err}));
+    });
+
+    
+})
+
 }
 
 

@@ -26,10 +26,10 @@ function getAll (params)
    str_search_geo    = '';
 
 
-   if (params.search)
+   if (params.title)
    {
        str_search_text      = " and to_tsvector('simple', coalesce(data->>'title','') || ' ' ||coalesce(data->>'description','')) @@ to_tsquery('"+params.search+"') ";
-       str_search_text_rs   = " and to_tsvector('simple', coalesce(data->>'title','')) @@ to_tsquery('"+params.search+"') "; 
+       str_search_text_rs   = " and to_tsvector('simple', coalesce(data->>'title','')) @@ to_tsquery('"+params.title+"') "; 
    }
 
    if (params.lat && params.lng)
@@ -249,7 +249,7 @@ function getRestaurants(params) {
                 str_search += " and data->>'startDate' >= '" + moment(params.start_date).toISOString() + "' and data->>'startDate' < '" + start_data_max.toISOString() + "'";
         }
     else
-        str_search += " and data->>'startDate' >= CURRENT_DATE";
+        str_search += " and data->>'startDate' >= '" + moment().toISOString() + "'";
         
     
     
@@ -382,7 +382,7 @@ function getMonuments(params) {
 
     }
     
-    //console.log(str_search);
+    console.log(str_search);
 
     sql.sequelize.query("select id_monument, fk_category, data, rating, time_to_visit, accessibility from dat_monument "
                     + " where 1 = 1 " + str_search + str_search_geo,
