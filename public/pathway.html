@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="CAGLIARI PORT 2020 - Tour Planner">
+    <meta name="author" content="CAGLIARI PORT 2020">
+    <title>Visualizza il tuo percorso creato con Tour Planner di Cagliari Port 2020</title>
+    
+
+    <meta property="og:title" content="CAGLIRI PORT 2020 - Visualizza il percorso che hai creato!" />
+    <meta property="og:url" content="http://smartapi.crs4.it/tourplanner/pathway.html/" />
+    <meta property="og:image" content="http://smartapi.crs4.it/tourplanner/img/cp_logo_share.png" />
+    <meta property="og:type" content="website" />
+     
+    <meta property="og:site_name" content="crs4.it" />
+
+
+
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link href="custom.css" rel="stylesheet">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      
+      }
+    </style>
+  </head>
+  <body>
+  
+    
+    <header>
+      
+      <div class="navbar navbar-dark bg-dark box-shadow">
+        
+        
+
+        <div class="container d-flex justify-content-between">
+          <div class="row">
+          <div class="col-sm-1 col-md-1 col-lg-1">
+              <a href="#" class="navbar-brand d-flex align-items-center">
+                <span><img src="img/logo_icon.png" /></span>
+                </a>
+              </div>
+              <div class="col-sm-11 col-md-11 col-lg-11">
+                <a href="#" class="navbar-brand d-flex ">
+                  <span><strong><span class="hidden-xs hidden-sm">CAGLIARI PORT 2020: </span>Tour Planner</strong></span>
+                </a>
+                </div>
+              </div>
+              </div>
+
+
+      </div>
+    </header>
+
+    <main role="main">
+    
+      <section>
+     <div class="container">
+        
+      <ul class="list-group" style="width: 99%; border: none">
+            <li class="list-group-item d-flex justify-content-between align-items-center" style="border: none">
+                Titolo&nbsp;&nbsp;
+              <span id="title" style="font-weight: bold"></span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center" style="border: none">
+                Tempo a disposizione (min)
+              <span id="time" class="badge badge-success badge-pill"></span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center" style="border: none">
+                La tua forma
+              <span id="fitness" class="badge badge-primary badge-pill"></span>
+            </li>
+          </ul>
+      
+     </div>
+    </section>
+
+      <section>
+        <div class="container">  
+    <div id="map" style="width: 99%; height: 800px;"></div>
+    </div>
+    </section>
+  
+  </main>
+
+  <footer class="text-muted">
+    <div class="container">
+      <p class="float-right">
+        <a href="#">Back to top</a>
+      </p>
+      <p>Questo percorso è stato creato con l'app Tour Planner realizzata nell'ambito del progetto CAGLIARI PORT 2020; </p>
+      <p>Vuoi avere più informazioni? <a href="../../">Visita la homepage del progetto</a> oppure leggi la nostra <a href="../../getting-started/">guida per iniziare</a>.</p>
+      <p>Richiedi la app e crea il tuo precorso!</p>
+    </div>
+  </footer>
+
+
+<script>
+
+var data_path = {};
+var d = getUrlParameter('path');
+
+//alert(d);
+
+if (typeof(d) != undefined)
+{
+  data_path = JSON.parse(d);
+  console.log('parse');
+}
+else
+{
+  data_path = {"_id":"3e495cda-6c77-ec5c-2000-2d988d4da073","dataIns":"2018-05-29T15:11:22.940Z"
+,"title":"Prova","date":"2018-05-29","puntoPartenza":"porto","profile":"0","difficolta":75,"duration":"60","mode":0,"start":{"lat":39.213644,"lng":9.111093},"stop":{"lat":39.213644,"lng":9.111093}
+,"category_rating":{"Monuments":1,"Gardens":1,"Museums":1,"Archeology":1,"Shopping":1},"points":[{"title":"Pinacoteca nazionale (Cagliari)","description":"La Pinacoteca nazionale di Cagliari, situata all’interno del complesso museale della Cittadella dei musei, si trova in piazza Arsenale 1 a Cagliari ed espone varie raccolte derivate sia da donazioni private che da acquisizioni statali.Nelle sale della Pinacoteca sono ospitati dipinti di artisti sardi dal Cinquecento al Novecento, opere pittoriche dei secoli XV-XVIII di scuola genovese, napoletana e romana e una raccolta di retabli sardi e catalani del '400 e '500.Il museo possiede anche una collezione etnografica e di artigianato, che viene esposta a rotazione.","fk_category":3,"lat":39.2217,"lng":9.11681
+,"thumbnail":"http://commons.wikimedia.org/wiki/Special:FilePath/Pinacoteca_nazionale_Cagliari.JPG?width=300","rating":3,"time_to_visit":6,"accessibility":1,"bgcolor":"#857463","timetovisit":6,"category":"Museums","_id":"d38f0b8b-01a7-769f-0c8b-9d4c235c5567"}
+,{"title":"Ghetto degli ebrei","description":"L'ex caserma San Carlo, notoriamente conosciuta con l’erronea denominazione di ghetto degli Ebrei, è un edificio storico della città di Cagliari, ubicato in Castello, con ingresso sulla via Santa Croce,  nella parte bassa del quartiere.I locali del “ghetto” sono utilizzati per varie iniziative culturali, mostre e convegni.","fk_category":3,"lat":39.2203,"lng":9.11472,"thumbnail":"http://commons.wikimedia.org/wiki/Special:FilePath/Santacroceca7.jpg?width=300","rating":3,"time_to_visit":1,"accessibility":1,"bgcolor":"#1ae89f","timetovisit":1,"category":"Museums","_id":"96967497-281d-07ef-de11-84b480277af3"},{"title":"Porta Cristina","description":"Porta Cristina, a Cagliari, è una porta di accesso al quartiere Castello che collega il viale Buoncammino, ove è presente lo storico carcere, alla piazza Arsenale. L'attuale Porta Cristina sostituì Porta del Soccorso, risalente al XVII secolo, e venne edificata nel 1825 in stile neoclassico, secondo un progetto del conte Carlo Pilo Boyl approvato da re Carlo Felice di Savoia. La porta venne chiamata Cristina in onore della regina Maria Cristina, sposa di Carlo Felice.Porta Cristina, le cui linee si ispirano alla facciata interna della Porta Pia di Roma, presenta l'arco di accesso aperto tra due lesene che reggono una trabeazione delimitata da due cornici aggettanti, entro le quali è posta una lunetta semicircolare in cui si trova l'iscrizione dedicatoria.","fk_category":2,"lat":39.22171105,"lng":9.11655743670886,"thumbnail":"http://commons.wikimedia.org/wiki/Special:FilePath/Storicagliari1.jpg?width=300","rating":5,"time_to_visit":1,"accessibility":1,"bgcolor":"#4158f2","timetovisit":1,"category":"Monuments","_id":"aad836fe-3a03-4c6f-bbf8-2b242e8fdd39"},{"title":"Torre di San Pancrazio (Cagliari)","description":"La torre di San Pancrazio, di epoca pisana, è la torre più alta di Cagliari. L'edificio, uno dei simboli della città (tanto che le torrette nel palazzo civico di via Roma sono state ispirate proprio dalle due due torri pisane), si trova nel punto più alto di Castello, a fianco del palazzo delle Seziate, ed è raggiungibile dalla via Indipendenza, dal viale Buoncammino tramite la porta Cristina, e da via Ubaldo Badas tramite la porta di San Pancrazio. La visita al monumento consente di ammirare vasti panorami della città e del circondario.","fk_category":2,"lat":39.2214,"lng":9.11722
+,"thumbnail":"http://commons.wikimedia.org/wiki/Special:FilePath/Torresanpancrazio.jpg?width=300","rating":5,"time_to_visit":20,"accessibility":1,"bgcolor":"#68fc3d","timetovisit":20,"category":"Monuments","_id":"457d7752-1a7c-a4d3-a8fa-e477cface491"}]}
+
+}
+
+/*
+
+http://seitre.crs4.it:3009/pathway.html?path={%22_id%22:%223e495cda-6c77-ec5c-2000-2d988d4da073%22,%22dataIns%22:%222018-05-29T15:11:22.940Z%22,%22title%22:%22Prova%22,%22date%22:%222018-05-29%22,%22puntoPartenza%22:%22porto%22,%22profile%22:%220%22,%22difficolta%22:75,%22duration%22:%2260%22,%22mode%22:0,%22start%22:{%22lat%22:39.213644,%22lng%22:9.111093},%22stop%22:{%22lat%22:39.213644,%22lng%22:9.111093},%22category_rating%22:{%22Monuments%22:1,%22Gardens%22:1,%22Museums%22:1,%22Archeology%22:1,%22Shopping%22:1},%22points%22:[{%22title%22:%22Pinacoteca%20nazionale%20(Cagliari)%22,%22description%22:%22%22,%22fk_category%22:3,%22lat%22:39.2217,%22lng%22:9.11681,%22thumbnail%22:%22%22,%22rating%22:3,%22time_to_visit%22:6,%22accessibility%22:1,%22bgcolor%22:%22%22,%22timetovisit%22:6,%22category%22:%22Museums%22,%22_id%22:%22%22},{%22title%22:%22Ghetto%20degli%20ebrei%22,%22description%22:%22%22,%22fk_category%22:3,%22lat%22:39.2203,%22lng%22:9.11472,%22thumbnail%22:%22%22,%22rating%22:3,%22time_to_visit%22:1,%22accessibility%22:1,%22bgcolor%22:%22%22,%22timetovisit%22:1,%22category%22:%22Museums%22,%22_id%22:%22%22},{%22title%22:%22Porta%20Cristina%22,%22description%22:%22%22,%22fk_category%22:2,%22lat%22:39.22171105,%22lng%22:9.11655743670886,%22thumbnail%22:%22%22,%22rating%22:5,%22time_to_visit%22:1,%22accessibility%22:1,%22bgcolor%22:%22%22,%22timetovisit%22:1,%22category%22:%22Monuments%22,%22_id%22:%22%22},{%22title%22:%22Torre%20di%20San%20Pancrazio%20(Cagliari)%22,%22description%22:%22%22,%22fk_category%22:2,%22lat%22:39.2214,%22lng%22:9.11722,%22thumbnail%22:%22%22,%22rating%22:5,%22time_to_visit%22:20,%22accessibility%22:1,%22bgcolor%22:%22%22,%22timetovisit%22:20,%22category%22:%22Monuments%22,%22_id%22:%22%22}]}
+
+var data_path = {"_id":"3e495cda-6c77-ec5c-2000-2d988d4da073","dataIns":"2018-05-29T15:11:22.940Z"
+,"title":"Prova","date":"2018-05-29","puntoPartenza":"porto","profile":"0","difficolta":75,"duration":"60","mode":0,"start":{"lat":39.213644,"lng":9.111093},"stop":{"lat":39.213644,"lng":9.111093}
+,"category_rating":{"Monuments":1,"Gardens":1,"Museums":1,"Archeology":1,"Shopping":1},"points":[{"title":"Pinacoteca nazionale (Cagliari)","description":"La Pinacoteca nazionale di Cagliari, situata all’interno del complesso museale della Cittadella dei musei, si trova in piazza Arsenale 1 a Cagliari ed espone varie raccolte derivate sia da donazioni private che da acquisizioni statali.Nelle sale della Pinacoteca sono ospitati dipinti di artisti sardi dal Cinquecento al Novecento, opere pittoriche dei secoli XV-XVIII di scuola genovese, napoletana e romana e una raccolta di retabli sardi e catalani del '400 e '500.Il museo possiede anche una collezione etnografica e di artigianato, che viene esposta a rotazione.","fk_category":3,"lat":39.2217,"lng":9.11681
+,"thumbnail":"http://commons.wikimedia.org/wiki/Special:FilePath/Pinacoteca_nazionale_Cagliari.JPG?width=300","rating":3,"time_to_visit":6,"accessibility":1,"bgcolor":"#857463","timetovisit":6,"category":"Museums","_id":"d38f0b8b-01a7-769f-0c8b-9d4c235c5567"}
+,{"title":"Ghetto degli ebrei","description":"L'ex caserma San Carlo, notoriamente conosciuta con l’erronea denominazione di ghetto degli Ebrei, è un edificio storico della città di Cagliari, ubicato in Castello, con ingresso sulla via Santa Croce,  nella parte bassa del quartiere.I locali del “ghetto” sono utilizzati per varie iniziative culturali, mostre e convegni.","fk_category":3,"lat":39.2203,"lng":9.11472,"thumbnail":"http://commons.wikimedia.org/wiki/Special:FilePath/Santacroceca7.jpg?width=300","rating":3,"time_to_visit":1,"accessibility":1,"bgcolor":"#1ae89f","timetovisit":1,"category":"Museums","_id":"96967497-281d-07ef-de11-84b480277af3"},{"title":"Porta Cristina","description":"Porta Cristina, a Cagliari, è una porta di accesso al quartiere Castello che collega il viale Buoncammino, ove è presente lo storico carcere, alla piazza Arsenale. L'attuale Porta Cristina sostituì Porta del Soccorso, risalente al XVII secolo, e venne edificata nel 1825 in stile neoclassico, secondo un progetto del conte Carlo Pilo Boyl approvato da re Carlo Felice di Savoia. La porta venne chiamata Cristina in onore della regina Maria Cristina, sposa di Carlo Felice.Porta Cristina, le cui linee si ispirano alla facciata interna della Porta Pia di Roma, presenta l'arco di accesso aperto tra due lesene che reggono una trabeazione delimitata da due cornici aggettanti, entro le quali è posta una lunetta semicircolare in cui si trova l'iscrizione dedicatoria.","fk_category":2,"lat":39.22171105,"lng":9.11655743670886,"thumbnail":"http://commons.wikimedia.org/wiki/Special:FilePath/Storicagliari1.jpg?width=300","rating":5,"time_to_visit":1,"accessibility":1,"bgcolor":"#4158f2","timetovisit":1,"category":"Monuments","_id":"aad836fe-3a03-4c6f-bbf8-2b242e8fdd39"},{"title":"Torre di San Pancrazio (Cagliari)","description":"La torre di San Pancrazio, di epoca pisana, è la torre più alta di Cagliari. L'edificio, uno dei simboli della città (tanto che le torrette nel palazzo civico di via Roma sono state ispirate proprio dalle due due torri pisane), si trova nel punto più alto di Castello, a fianco del palazzo delle Seziate, ed è raggiungibile dalla via Indipendenza, dal viale Buoncammino tramite la porta Cristina, e da via Ubaldo Badas tramite la porta di San Pancrazio. La visita al monumento consente di ammirare vasti panorami della città e del circondario.","fk_category":2,"lat":39.2214,"lng":9.11722
+,"thumbnail":"http://commons.wikimedia.org/wiki/Special:FilePath/Torresanpancrazio.jpg?width=300","rating":5,"time_to_visit":20,"accessibility":1,"bgcolor":"#68fc3d","timetovisit":20,"category":"Monuments","_id":"457d7752-1a7c-a4d3-a8fa-e477cface491"}]}
+*/
+
+/*
+var data_path = {"_id":"3e495cda-6c77-ec5c-2000-2d988d4da073","dataIns":"2018-05-29T15:11:22.940Z","title":"Prova","date":"2018-05-29","puntoPartenza":"porto","profile":"0","difficolta":75,"duration":"60","mode":0,"start":{"lat":39.213644,"lng":9.111093},"stop":{"lat":39.213644,"lng":9.111093},"category_rating":{"Monuments":1,"Gardens":1,"Museums":1,"Archeology":1,"Shopping":1},"points":[{"title":"Pinacoteca nazionale (Cagliari)","description":"","fk_category":3,"lat":39.2217,"lng":9.11681,"thumbnail":"","rating":3,"time_to_visit":6,"accessibility":1,"bgcolor":"","timetovisit":6,"category":"Museums","_id":""},{"title":"Ghetto degli ebrei","description":"","fk_category":3,"lat":39.2203,"lng":9.11472,"thumbnail":"","rating":3,"time_to_visit":1,"accessibility":1,"bgcolor":"","timetovisit":1,"category":"Museums","_id":""},{"title":"Porta Cristina","description":"","fk_category":2,"lat":39.22171105,"lng":9.11655743670886,"thumbnail":"","rating":5,"time_to_visit":1,"accessibility":1,"bgcolor":"","timetovisit":1,"category":"Monuments","_id":""}
+,{"title":"Torre di San Pancrazio (Cagliari)","description":"","fk_category":2,"lat":39.2214,"lng":9.11722,"thumbnail":"","rating":5,"time_to_visit":20,"accessibility":1,"bgcolor":"","timetovisit":20,"category":"Monuments","_id":""}]}
+
+*/
+
+
+
+/*
+ for (let i=0; i<data_path.points.length; i++){ 
+     
+     data_path.points[i].description = '';
+     data_path.points[i].thumbnail = '';
+     data_path.points[i].bgcolor = '';
+     data_path.points[i]._id = '';
+     console.log(data_path.points[i]);
+      }
+*/
+
+//alert(JSON.stringify( data_path));
+
+
+$( document ).ready(function() {
+    
+    $("#title").text(data_path.title);
+    $("#time").text(data_path.duration);
+    
+    let diff = '';
+
+    switch(data_path.difficolta) {
+    case 0:
+      diff =  'LOW';
+    break;
+    case 25:
+      diff =  'MEDIUM';
+    break;
+    case 50:
+      diff =  'GOOD';
+    break;
+    case 75:
+      diff =  'HIGH';
+    break;
+    case 100:
+      diff =  'VERYHIGH';
+    break;
+  }
+
+  $("#fitness").text(diff);
+    
+
+});
+
+
+proxy_url_optimize = 'http://192.167.144.196:5010/v1/requestTrip/';
+
+
+
+
+//console.log(pathway);
+
+      function initMap() {
+
+        $.ajax({url: "http://192.167.144.196:5010/v1/requestTrip/"
+       , type: 'POST'
+       , data: data_path
+        , dataType: 'json'
+        , success: function(result){
+          
+          console.log(result);
+        }
+        , error: function (request, status, error) {
+        
+        //console.log(data_path);
+        //console.log(responseText);
+        //console.log(status);
+        }
+    });
+
+
+
+       origin =  data_path.points[0];
+       destination = data_path.points[data_path.points.length-1];
+       waypts = data_path.points;
+     
+    let waypoints = [];
+    let waypoints_titles = [];
+    for (let i=1; i<waypts.length-1;i++){ 
+      if(waypts[i].lat && waypts[i].lng){
+        waypoints.push({ location : new google.maps.LatLng(waypts[i].lat, waypts[i].lng), stopover: true});
+      }
+    }
+    
+    //tutti i title
+    for (let i in waypts){
+      if(waypts[i].lat && waypts[i].lng){ 
+        waypoints_titles.push({ title : waypts[i].title});
+      }
+    }
+
+
+// map setting       
+    let latlng_origin = { location : new google.maps.LatLng(origin.lat, origin.lng)};
+    let latlng_destination = { location : new google.maps.LatLng(destination.lat, destination.lng)};
+    let latlng_center = getCenter(data_path);
+
+
+    
+
+    let routeRequest = {
+        origin: latlng_origin,
+        destination: latlng_destination,
+        waypoints: waypoints,
+        optimizeWaypoints: false,
+        provideRouteAlternatives: false,
+        travelMode: 'WALKING'
+      };
+   
+
+
+// render mappa
+    
+        directionsDisplay = new google.maps.DirectionsRenderer({suppressMarkers: true});
+        directionsService = new google.maps.DirectionsService();
+    
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: latlng_center
+        });
+        directionsDisplay.setMap(map);
+
+        //calculateAndDisplayRoute(directionsService, directionsDisplay);
+        
+        // creazione del percorso
+        directionsService.route({
+          origin: latlng_origin,  
+          destination: latlng_destination, 
+          waypoints: waypoints,
+          optimizeWaypoints: false, 
+          travelMode: google.maps.TravelMode['WALKING']
+        }, function(response, status) {
+          if (status == 'OK') {
+            
+            directionsDisplay.setDirections(response);
+            
+            showSteps(response, waypoints_titles, map);
+
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+        
+        
+        
+       
+      }
+
+   function     showSteps(directionResult, waypts_titles, map) {
+    
+    var myRoute = directionResult.routes[0];
+    var icon; 
+    var markerArray = [];
+    
+    console.log(directionResult.routes);
+    
+    for (var i = 0; i < myRoute.legs.length; i++) {
+      
+      icon = "https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=" + (i+1) + "|4C9E21|000000";
+      //icon = 'https://maps.google.com/mapfiles/kml/shapes/parking_lot_maps.png';
+     
+     if (waypts_titles[i].title.substring(0,5) == "Start" || waypts_titles[i].title.substring(0,5) == "Stop_")
+     {
+          if (i == 0 || i == myRoute.legs.length) {
+             
+             icon = "img/logo_icon.png";
+          }
+          waypts_titles[i].title = "Cruise terminal";
+        
+      }
+      var marker = new google.maps.Marker({
+        position: myRoute.legs[i].start_location,
+        //animation: google.maps.Animation.DROP,
+        map: map,
+        icon: icon
+      });
+      addInfoWindow(marker, waypts_titles[i].title, null);
+      //console.log(waypts_titles[i].title);
+      markerArray.push(marker);
+    }
+    
+    
+    if (waypts_titles[i].title.substring(0,5) == "Stop_")
+     {
+          icon = "img/logo_icon.png";
+          waypts_titles[i].title = "Cruise terminal";
+        //icon = "https://chart.googleapis.com/chart?chst=d_map_spin&chld=3|0|green|12|arial|"+waypts_titles[i].title;
+      }
+      else
+          icon = "https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=" + (i+1) + "|4C9E21|000000";
+
+
+    var marker = new google.maps.Marker({
+      position: myRoute.legs[i - 1].end_location,
+      animation: google.maps.Animation.DROP,
+      map: map,
+      icon: icon //"https://chart.googleapis.com/chart?chst=d_fnote&chld=balloon|1|000000|h|"+waypts_titles[i].title //"https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=" + (i+1) + "|4C9E21|000000" //"https://chart.googleapis.com/chart?chst=d_map_pin_icon&chld=flag|ADDE63"
+    });
+    
+    
+    addInfoWindow(marker, waypts_titles[i].title, null, map);
+   
+    markerArray.push(marker);
+  }
+
+
+function addInfoWindow(marker, content, type, map) {
+
+//console.log(JSON.stringify(content.title));
+
+//console.log(JSON.stringify(content));
+//console.log(content);
+let contentString;
+  
+          contentString = '<div><h5>'+content+'</h5></div>';
+
+let infoWindow = new google.maps.InfoWindow({
+  content: contentString
+});
+
+google.maps.event.addListener(marker, 'click', () => {
+  infoWindow.open(map, marker);
+  
+});
+} 
+
+
+
+
+      /*
+      function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+        var selectedMode = document.getElementById('mode').value;
+        directionsService.route({
+          origin: {lat: 37.77, lng: -122.447},  // Haight.
+          destination: {lat: 37.768, lng: -122.511},  // Ocean Beach.
+          // Note that Javascript allows us to access the constant
+          // using square brackets and a string value as its
+          // "property."
+          waypoints: waypoints,
+          travelMode: google.maps.TravelMode[selectedMode]
+        }, function(response, status) {
+          if (status == 'OK') {
+            directionsDisplay.setDirections(response);
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+      }
+    */
+
+
+
+    function getCenter(pathway)
+    {
+          //console.log(this.pathway.points);
+          
+
+          let max_lat = 0.0;
+          let max_lng = 0.0;
+          let min_lat = 1000.0;
+          let min_lng = 1000.0;
+
+          for (let i = 0; i < pathway.points.length; i++) {
+            
+
+            if  (parseFloat(pathway.points[i].lat) > max_lat)
+                max_lat = parseFloat(pathway.points[i].lat);
+            if  (parseFloat(pathway.points[i].lng) > max_lng)
+                max_lng = parseFloat(pathway.points[i].lng);
+
+            if  (parseFloat(pathway.points[i].lat) < min_lat)
+                min_lat = parseFloat(pathway.points[i].lat);
+            if  (parseFloat(pathway.points[i].lng) < min_lng)
+                min_lng = parseFloat(pathway.points[i].lng);
+       
+        }
+
+        let c_lat = (max_lat - min_lat)/2 + min_lat;
+        let c_lng = (max_lng - min_lng)/2 + min_lng;
+         
+        return {"lat": c_lat, "lng": c_lng};
+    }
+   
+
+  function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
+};
+
+
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7svax8fUAqTVVvtjynvTAf105rMbEEsQ&callback=initMap">
+    </script>
+  </body>
+
+
+</html>
